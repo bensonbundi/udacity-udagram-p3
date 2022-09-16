@@ -1,0 +1,12 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata:
+  name: udacity-udagram-p3-configmap 
+data:
+  # Configuration values can be set as key-value properties
+  AWS_BUCKET: udacity-udagram-p3-s3
+  AWS_REGION: us-east-1
+  AWS_PROFILE: alxt-ben
+  POSTGRES_HOST: udacity-udagram-p3-db.c1jcpqtoz3w1.us-east-1.rds.amazonaws.com
+  JWT_SECRET: itsasecret
+  URL: http://localhost:8100

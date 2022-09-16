@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-api-user
+  labels:
+    app: udagram-api-user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-api-user
+  template:
+    metadata:
+      labels:
+        app: udagram-api-user
+    spec:
+      containers:
+      - name: udagram-api-user
+        image: beunra/udagram-api-user:v1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        volumeMounts:
+          - name: aws-credentials-volume
+            mountPath: /root/.aws
+        envFrom:
+          - configMapRef:
+              name: udacity-udagram-p3-configmap
+          - secretRef:
+              name: udacity-udagram-p3-secret
+      restartPolicy: Always
+      volumes:
+        - name: aws-credentials-volume
+          secret:
+            secretName: udacity-udagram-p3-aws-secret
+            items:
+            - key: credentials
+              path: credentials

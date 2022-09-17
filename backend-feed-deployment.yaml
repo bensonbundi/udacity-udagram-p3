@@ -18,6 +18,13 @@ spec:
       - name: udagram-api-feed
         image: beunra/udagram-api-feed:v1
         imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "1024Mi"
+            cpu: "400m"
+          limits:
+            memory: "2048Mi"
+            cpu: "700m"
         ports:
         - containerPort: 8080
         volumeMounts:
